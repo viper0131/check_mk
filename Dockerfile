@@ -47,7 +47,7 @@ RUN \
         perl-Net-SNMP \
         which
 
-RUN rpm -ivh https://mathias-kettner.de/support/1.2.8p11/check-mk-raw-1.2.8p11-el7-36.x86_64.rpm
+RUN rpm -ivh https://mathias-kettner.de/support/1.2.8p12/check-mk-raw-1.2.8p12-el7-36.x86_64.rpm
 
 RUN omd create mva || true
 RUN omd config mva set TMPFS off
