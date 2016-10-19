@@ -47,7 +47,7 @@ RUN \
 
 ADD    bootstrap.sh /opt/
 EXPOSE 5000
-VOLUME /opt/omd
+#VOLUME /opt/omd
 
 # retrieve and install the check mk binaries
 RUN rpm -ivh https://mathias-kettner.de/support/1.2.8p12/check-mk-raw-1.2.8p12-el7-36.x86_64.rpm
@@ -61,8 +61,8 @@ RUN omd create mva || \
     omd config mva set APACHE_TCP_ADDR 0.0.0.0 && \
     omd config mva set APACHE_TCP_PORT 5000 && \
     su - mva -c "htpasswd -b ~/etc/htpasswd admin system" && \
-    su - mva -c "htpasswd -D ~/etc/htpasswd omdadmin"
+    echo su - mva -c "htpasswd -D ~/etc/htpasswd omdadmin"
     
 
 #CMD omd start && tail -F /omd/sites/mva/var/log/nagios.log
-CMD ["bootstrap.sh","mva"]
+CMD ["/opt/bootstrap.sh","mva"]
