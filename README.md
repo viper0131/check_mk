@@ -9,6 +9,6 @@ start with
 
 browse to
 
-http://localhost:5000/mva/check_mk
+http://localhost/mva/check_mk
 
 login with omdadmin, omd
