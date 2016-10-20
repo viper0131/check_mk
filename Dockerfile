@@ -65,7 +65,7 @@ RUN omd create ${CMK_SITE} || \
     omd config ${CMK_SITE} set APACHE_TCP_ADDR 0.0.0.0 && \
     omd config ${CMK_SITE} set APACHE_TCP_PORT 5000 && \
     su - ${CMK_SITE} -c "htpasswd -b ~/etc/htpasswd admin system" && \
-    echo su - ${CMK_SITE} -c "htpasswd -D ~/etc/htpasswd omdadmin"
+    su - ${CMK_SITE} -c "htpasswd -D ~/etc/htpasswd omdadmin"
     
 
 WORKDIR /omd
