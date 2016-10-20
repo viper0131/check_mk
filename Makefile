@@ -1,4 +1,4 @@
 all: image
 
 image:
-	docker build -t machiel/checkmk .
+	docker build -t nlmacamp/check_mk .
