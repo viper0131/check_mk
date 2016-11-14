@@ -64,9 +64,9 @@ RUN omd create ${CMK_SITE} || \
     omd config ${CMK_SITE} set CRONTAB off && \
     omd config ${CMK_SITE} set APACHE_TCP_ADDR 0.0.0.0 && \
     omd config ${CMK_SITE} set APACHE_TCP_PORT 5000 && \
-    su - ${CMK_SITE} -c "htpasswd -b ~/etc/htpasswd admin system" && \
-    su - ${CMK_SITE} -c "htpasswd -D ~/etc/htpasswd omdadmin"
+    ln -s "/omd/sites/${CMK_SITE}/var/log/nagios.log" /var/log/nagios.log
     
 
 WORKDIR /omd
-ENTRYPOINT ["/opt/bootstrap.sh","${CMK_SITE}"]
+ENTRYPOINT ["/opt/bootstrap.sh"]
+
