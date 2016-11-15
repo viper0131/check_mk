@@ -49,7 +49,9 @@ RUN \
         perl-Net-SNMP \
         which \
         ssmtp \
-        mailx
+        mailx \
+        openssh-clients \
+        samba-client
 
 ADD    bootstrap.sh /opt/
 EXPOSE 5000/tcp
