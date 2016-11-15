@@ -2,6 +2,7 @@ FROM centos:7
 
 ENV CMK_VERSION="1.2.8p12"
 ENV CMK_SITE="mva"
+ENV MAILHUB="undefined"
 
 RUN \
     yum -y install epel-release && \
@@ -46,7 +47,9 @@ RUN \
         fping \
         libmcrypt \
         perl-Net-SNMP \
-        which
+        which \
+        ssmtp \
+        mailx
 
 ADD    bootstrap.sh /opt/
 EXPOSE 5000/tcp

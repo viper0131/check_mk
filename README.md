@@ -57,8 +57,9 @@ Start Check_MK using:
            nlmacamp/check_mk
 ```
 
-Check the status of check_mk using:
+*OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
 
+Check the status of check_mk using:
 
 ```bash
 docker exec -it check_mk omd status
