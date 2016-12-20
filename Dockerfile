@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:7.3.1611
 
 ENV CMK_VERSION="1.2.8p15"
 ENV CMK_SITE="mva"
