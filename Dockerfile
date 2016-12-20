@@ -49,9 +49,12 @@ RUN \
         perl-Net-SNMP \
         which \
         ssmtp \
-        mailx
+        mailx \
+        openssh-clients \
+        samba-client
 
 ADD    bootstrap.sh /opt/
+ADD    redirector.sh /opt/
 EXPOSE 5000/tcp
 
 #VOLUME /opt/omd
@@ -64,10 +67,11 @@ RUN rpm -ivh https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CM
 RUN omd create ${CMK_SITE} || \
     omd config ${CMK_SITE} set DEFAULT_GUI check_mk && \
     omd config ${CMK_SITE} set TMPFS off && \
-    omd config ${CMK_SITE} set CRONTAB off && \
+    omd config ${CMK_SITE} set CRONTAB on && \
     omd config ${CMK_SITE} set APACHE_TCP_ADDR 0.0.0.0 && \
     omd config ${CMK_SITE} set APACHE_TCP_PORT 5000 && \
-    ln -s "/omd/sites/${CMK_SITE}/var/log/nagios.log" /var/log/nagios.log
+    ln -s "/omd/sites/${CMK_SITE}/var/log/nagios.log" /var/log/nagios.log && \
+    /opt/redirector.sh ${CMK_SITE} > /omd/sites/${CMK_SITE}/var/www/index.html
     
 
 WORKDIR /omd
