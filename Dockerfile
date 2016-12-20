@@ -1,6 +1,6 @@
 FROM centos:7
 
-ENV CMK_VERSION="1.2.8p12"
+ENV CMK_VERSION="1.2.8p15"
 ENV CMK_SITE="mva"
 ENV MAILHUB="undefined"
 
@@ -51,7 +51,8 @@ RUN \
         ssmtp \
         mailx \
         openssh-clients \
-        samba-client
+        samba-client \
+        rpcbind
 
 ADD    bootstrap.sh /opt/
 ADD    redirector.sh /opt/
@@ -60,7 +61,7 @@ EXPOSE 5000/tcp
 #VOLUME /opt/omd
 
 # retrieve and install the check mk binaries
-RUN rpm -ivh https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-36.x86_64.rpm
+RUN rpm -ivh https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-38.x86_64.rpm
 
 # Creation of the site fails on creating tempfs, ignore it.
 # Now turn tempfs off after creating the site
