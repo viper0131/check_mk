@@ -13,6 +13,9 @@ chmod 640 $CFGFILE
 chown root:mail $CFGFILE
 
 
+# Start cron daemon
+/usr/sbin/crond
+
 # Start check_mk
 omd start && tail -f /var/log/nagios.log
 
