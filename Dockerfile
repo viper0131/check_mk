@@ -1,6 +1,7 @@
 FROM centos:7.3.1611
 
-ENV CMK_VERSION="1.2.8p15"
+ENV CMK_VERSION="1.2.8p18"
+ENV CMK_DOWNLOADNR="41"
 ENV CMK_SITE="mva"
 ENV MAILHUB="undefined"
 
@@ -61,7 +62,7 @@ EXPOSE 5000/tcp
 #VOLUME /opt/omd
 
 # retrieve and install the check mk binaries
-RUN rpm -ivh https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-38.x86_64.rpm
+RUN rpm -ivh https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-${CMK_DOWNLOADNR}.x86_64.rpm
 
 # Creation of the site fails on creating tempfs, ignore it.
 # Now turn tempfs off after creating the site
