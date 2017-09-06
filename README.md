@@ -1,13 +1,13 @@
-# nlmacamp/check_mk:1.2.8p23
-
+# nlmacamp/check_mk:1.4.0p10
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
   - [Issues](#issues)
-
 - [Getting started](#getting-started)
   - [Installation](#installation)
   - [Quickstart](#quickstart)
+- [Updates](#updates)
+
 
 # Introduction
 
@@ -30,6 +30,8 @@ Before reporting your issue please try updating Docker to the latest version and
 
 SELinux users should try disabling SELinux using the command `setenforce 0` to see if it resolves the issue.
 
+----------
+
 # Getting started
 
 ## Installation
@@ -37,7 +39,7 @@ SELinux users should try disabling SELinux using the command `setenforce 0` to s
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/nlmacamp/check_mk) and is the recommended method of installation.
 
 ```bash
-docker pull nlmacamp/check_mk:1.2.8p23
+docker pull nlmacamp/check_mk:1.4.0p10
 ```
 
 Alternatively you can build the image yourself.
@@ -83,4 +85,15 @@ Fireup the Check_MK GUI:
 
 Browse to http://localhost/mva
 
-login with the default user omdadmin with password omd
+login with the default user **cmkadmin** with password **omd**
+
+----------
+
+# Updates
+
+1. Log into your current container (`docker exec -it check_mk /bin/bash`)
+2. Stop check_mk (`omd stop mva`)
+3. Install new check_mk rpm (get link for CentOS 7 version from [here](http://mathias-kettner.com/check_mk_download.php?HTML=yes)): `rpm -ivh https://mathias-kettner.de/support/1.4.0p1/check-mk-raw-1.4.0p1-el7-48.x86_64.rpm`
+4. Update check_mk (`omd update mva`)
+5. Start check_mk (`omd start mva`)
+

@@ -1,7 +1,7 @@
 FROM centos:7.3.1611
 
-ENV CMK_VERSION="1.2.8p23"
-ENV CMK_DOWNLOADNR="46"
+ENV CMK_VERSION="1.4.0p10"
+ENV CMK_DOWNLOADNR="57"
 ENV CMK_SITE="mva"
 ENV MAILHUB="undefined"
 
@@ -72,6 +72,7 @@ RUN omd create ${CMK_SITE} || \
     omd config ${CMK_SITE} set CRONTAB on && \
     omd config ${CMK_SITE} set APACHE_TCP_ADDR 0.0.0.0 && \
     omd config ${CMK_SITE} set APACHE_TCP_PORT 5000 && \
+    htpasswd -b -m /omd/sites/${CMK_SITE}/etc/htpasswd cmkadmin omd && \
     ln -s "/omd/sites/${CMK_SITE}/var/log/nagios.log" /var/log/nagios.log && \
     /opt/redirector.sh ${CMK_SITE} > /omd/sites/${CMK_SITE}/var/www/index.html
     
