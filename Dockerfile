@@ -1,8 +1,14 @@
 FROM centos:7.4.1708
 
-ENV CMK_VERSION="1.4.0p15"
-ENV CMK_DOWNLOADNR="62"
-ENV CMK_SITE="mva"
+# ARG can be overwritten on build time using "docker build --build-arg name=value"
+ARG CMK_VERSION_ARG="1.4.0p15"
+ARG CMK_DOWNLOADNR_ARG="64"
+ARG CMK_SITE_ARG="mva"
+
+# After Build the ENV vars are initialized with the value of there build argument.
+ENV CMK_VERSION=${CMK_VERSION_ARG}
+ENV CMK_DOWNLOADNR=${CMK_DOWNLOADNR_ARG}
+ENV CMK_SITE=${CMK_SITE_ARG}
 ENV MAILHUB="undefined"
 
 RUN \
