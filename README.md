@@ -61,13 +61,11 @@ Start Check_MK using:
 
 *OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
 
-If your want to keep your configuration files + performance data persistent, you have to map the `/opt/omd` directory to the local filesystem like this:
+If your want to map a local directory (e.g. for backup or check scripts):
 
 ```
-  --volume <localdir>:/opt/omd
+  --volume <localdir>:/opt/backup
 ```
-
-Additional volumes could be mapped for the check_mk backup feature or check scripts.
 
 ## Test installation
 
