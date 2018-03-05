@@ -1,16 +1,18 @@
 FROM centos:7.4.1708
 
 # ARG can be overwritten on build time using "docker build --build-arg name=value"
-ARG CMK_VERSION_ARG="1.4.0p24"
-ARG CMK_DOWNLOADNR_ARG="71"
+ARG CMK_VERSION_ARG="1.4.0p26"
+ARG CMK_DOWNLOADNR_ARG="73"
 ARG CMK_SITE_ARG="mva"
 ARG MAILHUB="undefined"
+ARG TIMEZONE="UTC"
 
 # After Build the ENV vars are initialized with the value of there build argument.
 ENV CMK_VERSION=${CMK_VERSION_ARG}
 ENV CMK_DOWNLOADNR=${CMK_DOWNLOADNR_ARG}
 ENV CMK_SITE=${CMK_SITE_ARG}
 ENV MAILHUB=${MAILHUB}
+ENV TIMEZONE=${TIMEZONE}
 
 RUN \
     yum -y install epel-release && \
@@ -67,6 +69,10 @@ ADD    redirector.sh /opt/
 EXPOSE 5000/tcp
 
 #VOLUME /opt/omd
+
+# set timezone
+RUN rm -f /etc/localtime
+RUN ln -s "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
 
 # retrieve and install the check mk binaries
 RUN rpm -ivh https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-${CMK_DOWNLOADNR}.x86_64.rpm
