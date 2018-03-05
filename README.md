@@ -48,6 +48,8 @@ Alternatively you can build the image yourself.
 docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 ```
 
+*OPTIONAL:* If you want to change the timezone in the docker container (default is `UTC`), use `--build-arg TIMEZONE=Europe/Berlin`
+
 ## Quickstart
 
 Start Check_MK using:
