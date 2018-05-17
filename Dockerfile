@@ -1,8 +1,8 @@
 FROM centos:7.4.1708
 
 # ARG can be overwritten on build time using "docker build --build-arg name=value"
-ARG CMK_VERSION_ARG="1.4.0p26"
-ARG CMK_DOWNLOADNR_ARG="73"
+ARG CMK_VERSION_ARG="1.5.0p2"
+ARG CMK_DOWNLOADNR_ARG="38"
 ARG CMK_SITE_ARG="mva"
 ARG MAILHUB="undefined"
 ARG TIMEZONE="UTC"
@@ -40,6 +40,7 @@ RUN \
         php-mbstring \
         php-pdo \
         php-gd \
+        php-xml \
         rsync \
         uuid \
         xinetd \
