@@ -6,4 +6,3 @@ image:
 cleanup:
 	-docker rmi nlmacamp/check_mk:latest
 	-docker rmi nlmacamp/check_mk:1.5.0p2
-
