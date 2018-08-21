@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Init check_mk instance
+if [ ! -d "/opt/omd/sites/${CMK_SITE}" ] ; then
+    omd create ${CMK_SITE}
+    omd config ${CMK_SITE} set APACHE_TCP_ADDR 0.0.0.0
+    htpasswd -b -m /omd/sites/${CMK_SITE}/etc/htpasswd cmkadmin omd
+    ln -s "/omd/sites/${CMK_SITE}/var/log/nagios.log" /var/log/nagios.log
+    /opt/redirector.sh ${CMK_SITE} > /omd/sites/${CMK_SITE}/var/www/index.html
+fi
+
+
 # Create SSMTP config
 CFGFILE=/etc/ssmtp/ssmtp.conf
 
