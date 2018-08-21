@@ -1,4 +1,4 @@
-# nlmacamp/check_mk:1.4.0p33
+# nlmacamp/check_mk:1.5.0p2
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -39,7 +39,7 @@ SELinux users should try disabling SELinux using the command `setenforce 0` to s
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/nlmacamp/check_mk) and is the recommended method of installation.
 
 ```bash
-docker pull nlmacamp/check_mk:1.4.0p33    (or nlmacamp/check_mk:latest)
+docker pull nlmacamp/check_mk:1.5.0p2    (or nlmacamp/check_mk:latest)
 ```
 
 Alternatively you can build the image yourself.
@@ -52,11 +52,14 @@ docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 
 ## Quickstart
 
+*IMPORTANT - the container needs SYS_ADMIN capability*
+
 Start Check_MK using:
 
 ```bash
     docker run -itd --name check_mk \
            --publish 80:5000 \
+           --cap-add=SYS_ADMIN \
            --restart always \
            nlmacamp/check_mk
 ```
@@ -103,7 +106,7 @@ login with the default user **cmkadmin** with password **omd**
 
 1. Log into your current container (`docker exec -it check_mk /bin/bash`)
 2. Stop check_mk (`omd stop mva`)
-3. Install new check_mk rpm (get link for CentOS 7 version from [here](http://mathias-kettner.com/check_mk_download.php?HTML=yes)): `rpm -ivh https://mathias-kettner.de/support/1.4.0p1/check-mk-raw-1.4.0p1-el7-48.x86_64.rpm`
+3. Install new check_mk rpm (get link for CentOS 7 version from [here](http://mathias-kettner.com/check_mk_download.php?HTML=yes)): `rpm -ivh https://mathias-kettner.de/support/1.5.0p2/check-mk-raw-1.5.0p2-el7-38.x86_64.rpm`
 4. Update check_mk (`omd update mva`)
 5. Start check_mk (`omd start mva`)
 
