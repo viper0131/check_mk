@@ -18,6 +18,7 @@ RUN yum -y install epel-release
 
 ADD    bootstrap.sh /opt/
 ADD    redirector.sh /opt/
+ADD    update.sh /opt/
 EXPOSE 5000/tcp
 
 # retrieve and install the check mk binaries and its dependencies
