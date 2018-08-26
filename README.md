@@ -53,9 +53,9 @@ docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38`
 To get the version and downloadnr, go to https://mathias-kettner.com/download.php and select your version (CRE). Select Red Hat / CentOS 7.x and right click on "Download" link and select "Copy link" (or similar).
 on clipboard you should have something like this:
-https://mathias-kettner.de/support/**1.5.0p2**/check-mk-raw-**1.5.0p2**-el7-**38**.x86_64.rpm
+https://<span></span>mathias-kettner.de\/support\/**1.5.0p2**\/check-mk-raw-**1.5.0p2**-el7-**38**.x86_64.rpm
 Generally:
-https://mathias-kettner.de/support/**<CMK_VERSION_ARG>**/check-mk-raw-**<CMK_VERSION_ARG>**-el7-**<CMK_DOWNLOADNR_ARG>**.x86_64.rpm
+https://<span></span>mathias-kettner.de\/support\/**<CMK_VERSION_ARG>**\/check-mk-raw-**<CMK_VERSION_ARG>**-el7-**<CMK_DOWNLOADNR_ARG>**.x86_64.rpm
 
 ```bash
 docker build -t nlmacamp/check_mk github.com/viper0131/check_mk --build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38
