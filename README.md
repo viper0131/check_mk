@@ -5,7 +5,9 @@
   - [Issues](#issues)
 - [Getting started](#getting-started)
   - [Installation](#installation)
+    - [Use another version](#use-another-version)
   - [Quickstart](#quickstart)
+    - [Volumes](#volumes)
 - [Updates](#updates)
 
 
@@ -47,8 +49,17 @@ Alternatively you can build the image yourself.
 ```bash
 docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 ```
+### Use another version
+If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38`
+To get the version and downloadnr, go to https://mathias-kettner.com/download.php and select your version (CRE). Select Red Hat / CentOS 7.x and right click on "Download" link and select "Copy link" (or similar).
+on clipboard you should have something like this:
+https://mathias-kettner.de/support/**1.5.0p2**/check-mk-raw-**1.5.0p2**-el7-**38**.x86_64.rpm
+Generally:
+https://mathias-kettner.de/support/**<CMK_VERSION_ARG>**/check-mk-raw-**<CMK_VERSION_ARG>**-el7-**<CMK_DOWNLOADNR_ARG>**.x86_64.rpm
 
-*OPTIONAL:* If you want to change the timezone in the docker container (default is `UTC`), use `--build-arg TIMEZONE=Europe/Berlin`
+```bash
+docker build -t nlmacamp/check_mk github.com/viper0131/check_mk --build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38
+```
 
 ## Quickstart
 
@@ -65,8 +76,18 @@ Start Check_MK using:
 ```
 
 *OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
+*OPTIONAL:* If you want to change the timezone in the docker container, use `-e TZ=Europe/Berlin`
+*OPTIONAL:* If you want to change the password for administrative user 'cmkadmin', use `-e CMK_PASSWORD=p4ssw0rd`. This work only on first run of docker container. You can also change it on Wato (web GUI).  
+*OPTIONAL:* If you want to change the name of your site (default: *mva*), use `-e CMK_SITE=mysite`. 
 
-If your want to map a local directory (e.g. for backup or check scripts):
+### Volumes
+
+You should map site directory (configuration, graphs, custom checks):
+```
+--volume <localdir>:/opt/omd/sites/<CMK_SITE>
+```
+
+If you want to map a local directory (e.g. for backup or check scripts):
 
 ```
   --volume <localdir>:/opt/backup
@@ -98,15 +119,12 @@ Fireup the Check_MK GUI:
 
 Browse to http://localhost/mva
 
-login with the default user **cmkadmin** with password **omd**
+login with the default user **cmkadmin** with password **omd** (or the pesonalized one, if specified in [Quickstart](#quickstart)).
 
 ----------
 
 # Updates
-
-1. Log into your current container (`docker exec -it check_mk /bin/bash`)
-2. Stop check_mk (`omd stop mva`)
-3. Install new check_mk rpm (get link for CentOS 7 version from [here](http://mathias-kettner.com/check_mk_download.php?HTML=yes)): `rpm -ivh https://mathias-kettner.de/support/1.5.0p2/check-mk-raw-1.5.0p2-el7-38.x86_64.rpm`
-4. Update check_mk (`omd update mva`)
-5. Start check_mk (`omd start mva`)
+1. Get your container name (`docker ps`).
+2. Get your desired check_mk version and his downloadnr as described in [Use another version](#use-another-version)
+3. Run this command (with correct container name and cmk version and downloadnr): `docker exec -it <container> /opt/update.sh <CMK_VERSION_ARG> <CMK_DOWNLOADNR_ARG>` (Ex. `docker exec -it check_mk /opt/update.sh 1.5.0p2 38`)
 
