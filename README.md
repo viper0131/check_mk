@@ -50,11 +50,16 @@ Alternatively you can build the image yourself.
 docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 ```
 ### Use another version
-If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38`
+If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38`.
+
 To get the version and downloadnr, go to https://mathias-kettner.com/download.php and select your version (CRE). Select Red Hat / CentOS 7.x and right click on "Download" link and select "Copy link" (or similar).
-on clipboard you should have something like this:
+
+On clipboard you should have something like this:
+
 https://<span></span>mathias-kettner.de\/support\/**1.5.0p2**\/check-mk-raw-**1.5.0p2**-el7-**38**.x86_64.rpm
+
 Generally:
+
 https://<span></span>mathias-kettner.de\/support\/**<CMK_VERSION_ARG>**\/check-mk-raw-**<CMK_VERSION_ARG>**-el7-**<CMK_DOWNLOADNR_ARG>**.x86_64.rpm
 
 ```bash
@@ -76,8 +81,11 @@ Start Check_MK using:
 ```
 
 *OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
+
 *OPTIONAL:* If you want to change the timezone in the docker container, use `-e TZ=Europe/Berlin`
+
 *OPTIONAL:* If you want to change the password for administrative user 'cmkadmin', use `-e CMK_PASSWORD=p4ssw0rd`. This work only on first run of docker container. You can also change it on Wato (web GUI).  
+
 *OPTIONAL:* If you want to change the name of your site (default: *mva*), use `-e CMK_SITE=mysite`. 
 
 ### Volumes
