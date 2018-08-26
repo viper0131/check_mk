@@ -14,7 +14,7 @@ ENV CMK_SITE=${CMK_SITE_ARG}
 ENV CMK_PASSWORD=${CMK_PASSWORD_ARG}
 ENV MAILHUB=${MAILHUB}
 
-RUN yum -y install epel-release
+RUN yum -y install epel-release && yum update -y
 
 ADD    bootstrap.sh /opt/
 ADD    redirector.sh /opt/
