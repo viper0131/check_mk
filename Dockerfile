@@ -1,10 +1,12 @@
 FROM centos:7
 
 # ARG can be overwritten on build time using "docker build --build-arg name=value"
-ARG CMK_VERSION_ARG="1.5.0p2"   # https://mathias-kettner.com/download.php
+# https://mathias-kettner.com/download.php
+ARG CMK_VERSION_ARG="1.5.0p2"
 ARG CMK_DOWNLOADNR_ARG="38"
 ARG CMK_SITE_ARG="mva"
-ARG CMK_PASSWORD_ARG="omd"      # cmkadmin password
+# cmkadmin password
+ARG CMK_PASSWORD_ARG="omd"
 ARG MAILHUB="undefined"
 
 # After Build the ENV vars are initialized with the value of there build argument.
