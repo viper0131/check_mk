@@ -4,12 +4,14 @@ FROM centos:7
 ARG CMK_VERSION_ARG="1.5.0p2"   # https://mathias-kettner.com/download.php
 ARG CMK_DOWNLOADNR_ARG="38"
 ARG CMK_SITE_ARG="mva"
+ARG CMK_PASSWORD_ARG="omd"      # cmkadmin password
 ARG MAILHUB="undefined"
 
 # After Build the ENV vars are initialized with the value of there build argument.
 ENV CMK_VERSION=${CMK_VERSION_ARG}
 ENV CMK_DOWNLOADNR=${CMK_DOWNLOADNR_ARG}
 ENV CMK_SITE=${CMK_SITE_ARG}
+ENV CMK_PASSWORD=${CMK_PASSWORD_ARG}
 ENV MAILHUB=${MAILHUB}
 
 RUN yum -y install epel-release
