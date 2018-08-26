@@ -15,6 +15,13 @@ if [ $? -eq 1 ]; then
 	exit 1
 fi
 echo "=NEW CHECK_MK VERSION ($VERSION) INSTALLED="
+echo "=SYSTEM UPDATE="
+yum update -y
+if [ $? -eq 1 ]; then
+	echo "=ERROR: cannot update the system="
+	exit 1
+fi
+echo "=SYSTEM UPDATED="
 echo "=STOP SITE $CMK_SITE="
 omd stop $CMK_SITE
 if [ $? -eq 1 ]; then
