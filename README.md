@@ -1,4 +1,4 @@
-# nlmacamp/check_mk:1.5.0p2
+# nlmacamp/check_mk:1.5.0p3
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -25,7 +25,6 @@ The Check_MK Raw Edition is a full-blown IT monitoring solution.
 
 If you find this image useful you can help. - Send a pull request with your awesome features and bug fixes
 
-
 ## Issues
 
 Before reporting your issue please try updating Docker to the latest version and check if it resolves the issue. Refer to the Docker [installation guide](https://docs.docker.com/installation) for instructions.
@@ -41,7 +40,7 @@ SELinux users should try disabling SELinux using the command `setenforce 0` to s
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/nlmacamp/check_mk) and is the recommended method of installation.
 
 ```bash
-docker pull nlmacamp/check_mk:1.5.0p2    (or nlmacamp/check_mk:latest)
+docker pull nlmacamp/check_mk:1.5.0p3    (or nlmacamp/check_mk:latest)
 ```
 
 Alternatively you can build the image yourself.
@@ -49,26 +48,28 @@ Alternatively you can build the image yourself.
 ```bash
 docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 ```
+
 ### Use another version
-If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38`.
+
+If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p3 --build-arg CMK_DOWNLOADNR_ARG=38`.
 
 To get the version and downloadnr, go to https://mathias-kettner.com/download.php and select your version (CRE). Select Red Hat / CentOS 7.x and right click on "Download" link and select "Copy link" (or similar).
 
 On clipboard you should have something like this:
 
-https://<span></span>mathias-kettner.de\/support\/**1.5.0p2**\/check-mk-raw-**1.5.0p2**-el7-**38**.x86_64.rpm
+https://<span></span>mathias-kettner.de\/support\/**1.5.0p3**\/check-mk-raw-**1.5.0p3**-el7-**38**.x86_64.rpm
 
 Generally:
 
 https://<span></span>mathias-kettner.de\/support\/**<CMK_VERSION_ARG>**\/check-mk-raw-**<CMK_VERSION_ARG>**-el7-**<CMK_DOWNLOADNR_ARG>**.x86_64.rpm
 
 ```bash
-docker build -t nlmacamp/check_mk github.com/viper0131/check_mk --build-arg CMK_VERSION_ARG=1.5.0p2 --build-arg CMK_DOWNLOADNR_ARG=38
+docker build -t nlmacamp/check_mk github.com/viper0131/check_mk --build-arg CMK_VERSION_ARG=1.5.0p3 --build-arg CMK_DOWNLOADNR_ARG=38
 ```
 
 ## Quickstart
 
-*IMPORTANT - the container needs SYS_ADMIN capability*
+**IMPORTANT - the container needs SYS_ADMIN capability or privileged mode (depends on os / docker version)**
 
 Start Check_MK using:
 
@@ -79,6 +80,15 @@ Start Check_MK using:
            --restart always \
            nlmacamp/check_mk
 ```
+
+If you get errors like
+
+```
+mount: tmpfs is write-protected, mounting read-only
+mount: cannot mount tmpfs read-only
+```
+
+try start your container with `--privileged` instead of `--cap-add=SYS_ADMIN`
 
 *OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
 
@@ -132,7 +142,7 @@ login with the default user **cmkadmin** with password **omd** (or the pesonaliz
 ----------
 
 # Updates
+
 1. Get your container name (`docker ps`).
 2. Get your desired check_mk version and his downloadnr as described in [Use another version](#use-another-version)
-3. Run this command (with correct container name and cmk version and downloadnr): `docker exec -it <container> /opt/update.sh <CMK_VERSION_ARG> <CMK_DOWNLOADNR_ARG>` (Ex. `docker exec -it check_mk /opt/update.sh 1.5.0p2 38`)
-
+3. Run this command (with correct container name and cmk version and downloadnr): `docker exec -it <container> /opt/update.sh <CMK_VERSION_ARG> <CMK_DOWNLOADNR_ARG>` (Ex. `docker exec -it check_mk /opt/update.sh 1.5.0p3 38`)
