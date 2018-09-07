@@ -102,14 +102,23 @@ try start your container with `--privileged` instead of `--cap-add=SYS_ADMIN`
 
 You should map site directory (configuration, graphs, custom checks):
 ```
---volume <localdir>:/opt/omd/sites/<CMK_SITE>
+--volume <localdir for sites>:/opt/omd/sites/
 ```
+
+`<CMK_SITE>` directory will be created automaticaly if it not exist.
 
 If you want to map a local directory (e.g. for backup or check scripts):
 
 ```
   --volume <localdir>:/opt/backup
 ```
+
+If use external the volume you can used this volume by second. All
+settings, users, groups and etc will be saved.
+
+>*Note*: The mode with exist volume not support multisite
+>feature. Only one site - one container will be works.
+
 
 ## Test installation
 
