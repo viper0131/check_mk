@@ -135,7 +135,7 @@ Overall state:  running
 
 Fireup the Check_MK GUI:
 
-Browse to http://<server-ip>
+Browse to `http://<server-ip>`
 
 login with the default user **cmkadmin** with password **omd** (or the pesonalized one, if specified in [Quickstart](#quickstart)).
 
