@@ -16,7 +16,9 @@ ENV CMK_SITE=${CMK_SITE_ARG}
 ENV CMK_PASSWORD=${CMK_PASSWORD_ARG}
 ENV MAILHUB=${MAILHUB}
 
-RUN yum -y install epel-release && yum update -y
+VOLUME ["/opt/backup", "/opt/omd/sites"]
+
+RUN yum -y install epel-release && yum update -y && yum install openssh-clients
 
 ADD    bootstrap.sh /opt/
 ADD    redirector.sh /opt/
