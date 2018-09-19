@@ -18,7 +18,7 @@ ENV MAILHUB=${MAILHUB}
 
 VOLUME ["/opt/backup", "/opt/omd/sites"]
 
-RUN yum -y install epel-release && yum update -y && yum install openssh-clients
+RUN yum -y install epel-release && yum update -y
 
 ADD    bootstrap.sh /opt/
 ADD    redirector.sh /opt/
@@ -26,7 +26,7 @@ ADD    update.sh /opt/
 EXPOSE 5000/tcp
 
 # retrieve and install the check mk binaries and its dependencies
-RUN yum install --nogpgcheck -y ssmtp which https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-${CMK_DOWNLOADNR}.x86_64.rpm
+RUN yum install --nogpgcheck -y ssmtp which https://mathias-kettner.de/support/${CMK_VERSION}/check-mk-raw-${CMK_VERSION}-el7-${CMK_DOWNLOADNR}.x86_64.rpm && yum -y install openssh-clients
 
 # fake fstab
 RUN echo "# /etc/fstab" > /etc/fstab
