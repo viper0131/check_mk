@@ -96,7 +96,7 @@ try start your container with `--privileged` instead of `--cap-add=SYS_ADMIN`
 
 *OPTIONAL:* If you want to change the password for administrative user 'cmkadmin', use `-e CMK_PASSWORD=p4ssw0rd`. This work only on first run of docker container. You can also change it on Wato (web GUI).  
 
-*OPTIONAL:* If you want to change the name of your site (default: *mva*), use `-e CMK_SITE=mysite`. 
+*OPTIONAL:* If you want to change the name of your site (default: *mva*), use `-e CMK_SITE=mysite`.
 
 ### Volumes
 
@@ -110,6 +110,9 @@ If you want to map another local directory (e.g. for backup or check scripts):
 ```
   --volume <localdir>:/opt/backup
 ```
+
+Both **/opt/omd/sites** and **/opt/backup** are defined as *VOLUMEs* in the Dockerfile and will be created as Volumes by Docker regardless if you use **--volume / -v** or not. To remove the volumes after usage, delete the container with **docker rm -v** ***<container name>*** or, after removing the container, do **docker system prune** to get rid of dangling volumes.
+
 
 ## Test installation
 
