@@ -1,4 +1,4 @@
-# nlmacamp/check_mk:1.5.0p4
+# nlmacamp/check_mk:1.5.0p5
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -40,7 +40,7 @@ SELinux users should try disabling SELinux using the command `setenforce 0` to s
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/nlmacamp/check_mk) and is the recommended method of installation.
 
 ```bash
-docker pull nlmacamp/check_mk:1.5.0p4    (or nlmacamp/check_mk:latest)
+docker pull nlmacamp/check_mk:1.5.0p5    (or nlmacamp/check_mk:latest)
 ```
 
 Alternatively you can build the image yourself.
@@ -51,20 +51,20 @@ docker build -t nlmacamp/check_mk github.com/viper0131/check_mk
 
 ### Use another version
 
-If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p4 --build-arg CMK_DOWNLOADNR_ARG=38`.
+If you want to change the version of check_mk, use `--build-arg CMK_VERSION_ARG=1.5.0p5 --build-arg CMK_DOWNLOADNR_ARG=38`.
 
 To get the version and downloadnr, go to https://mathias-kettner.com/download.php and select your version (CRE). Select Red Hat / CentOS 7.x and right click on "Download" link and select "Copy link" (or similar).
 
 On clipboard you should have something like this:
 
-https://<span></span>mathias-kettner.de\/support\/**1.5.0p4**\/check-mk-raw-**1.5.0p4**-el7-**38**.x86_64.rpm
+https://<span></span>mathias-kettner.de\/support\/**1.5.0p5**\/check-mk-raw-**1.5.0p5**-el7-**38**.x86_64.rpm
 
 Generally:
 
 https://<span></span>mathias-kettner.de\/support\/**<CMK_VERSION_ARG>**\/check-mk-raw-**<CMK_VERSION_ARG>**-el7-**<CMK_DOWNLOADNR_ARG>**.x86_64.rpm
 
 ```bash
-docker build -t nlmacamp/check_mk github.com/viper0131/check_mk --build-arg CMK_VERSION_ARG=1.5.0p4 --build-arg CMK_DOWNLOADNR_ARG=38
+docker build -t nlmacamp/check_mk github.com/viper0131/check_mk --build-arg CMK_VERSION_ARG=1.5.0p5 --build-arg CMK_DOWNLOADNR_ARG=38
 ```
 
 ## Quickstart
@@ -145,4 +145,4 @@ login with the default user **cmkadmin** with password **omd** (or the pesonaliz
 
 1. Get your container name (`docker ps`).
 2. Get your desired check_mk version and his downloadnr as described in [Use another version](#use-another-version)
-3. Run this command (with correct container name and cmk version and downloadnr): `docker exec -it <container> /opt/update.sh <CMK_VERSION_ARG> <CMK_DOWNLOADNR_ARG>` (Ex. `docker exec -it check_mk /opt/update.sh 1.5.0p4 38`)
+3. Run this command (with correct container name and cmk version and downloadnr): `docker exec -it <container> /opt/update.sh <CMK_VERSION_ARG> <CMK_DOWNLOADNR_ARG>` (Ex. `docker exec -it check_mk /opt/update.sh 1.5.0p5 38`)
