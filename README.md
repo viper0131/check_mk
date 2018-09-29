@@ -91,6 +91,8 @@ mount: cannot mount tmpfs read-only
 try start your container with `--privileged` instead of `--cap-add=SYS_ADMIN`
 
 *OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
+*OPTIONAL:* Specify outgoing mail server encryption with `-e "MAILHUBSTARTTLS=YES"`
+*OPTIONAL:* Specify outgoing mail server login with `-e "MAILHUBAUTHUSER=<USERNAME>"` and `-e "MAILHUBAUTHPASS=<PASSWORD>"`
 
 *OPTIONAL:* If you want to change the timezone in the docker container, use `-e TZ=Europe/Berlin`
 
