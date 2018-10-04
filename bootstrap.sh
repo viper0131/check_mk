@@ -39,10 +39,11 @@ cat >$CFGFILE <<CONFIG
 root=root
 mailhub=${MAILHUB}
 FromLineOverride=YES
-UseSTARTSSL=${MAILHUBSTARTTLS}                                                  
-AuthUser=${MAILHUBAUTHUSER}                                                     
-AuthPass=${MAILHUBAUTHPASS}
 CONFIG
+
+[ "${MAILHUBAUTHUSER}" ] && echo AuthUser=${MAILHUBAUTHUSER} >> $CFGFILE
+[ "${MAILHUBAUTHPASS}" ] && echo AuthPass=${MAILHUBAUTHPASS} >> $CFGFILE
+[ "${MAILHUBSTARTTLS}" ] && echo UseSTARTSSL=${MAILHUBSTARTTLS} >> $CFGFILE
 
 chmod 640 $CFGFILE
 chown root:mail $CFGFILE
