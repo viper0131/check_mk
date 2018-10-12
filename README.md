@@ -92,6 +92,10 @@ try start your container with `--privileged` instead of `--cap-add=SYS_ADMIN`
 
 *OPTIONAL:* Specify outgoing mail server with `-e "MAILHUB=<IP:PORT>"`
 
+*OPTIONAL:* Specify outgoing mail server encryption with `-e "MAILHUBSTARTTLS=YES"`
+
+*OPTIONAL:* Specify outgoing mail server login with `-e "MAILHUBAUTHUSER=<USERNAME>` and `-e "MAILHUBAUTHPASS=<PASSWORD>"`
+
 *OPTIONAL:* If you want to change the timezone in the docker container, use `-e TZ=Europe/Berlin`
 
 *OPTIONAL:* If you want to change the password for administrative user 'cmkadmin', use `-e CMK_PASSWORD=p4ssw0rd`. This work only on first run of docker container. You can also change it on Wato (web GUI).  
