@@ -2,7 +2,7 @@ FROM centos:7
 
 # ARG can be overwritten on build time using "docker build --build-arg name=value"
 # https://mathias-kettner.com/download.php
-ARG CMK_VERSION_ARG="1.5.0p5"
+ARG CMK_VERSION_ARG="1.5.0p12"
 ARG CMK_DOWNLOADNR_ARG="38"
 ARG CMK_SITE_ARG="mva"
 # cmkadmin password
